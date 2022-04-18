@@ -61,6 +61,13 @@ sudo apt install git
 git config --global user.name "izmaxxsun"
 git config --global user.email "isra.sunhachawi@elastic.co"
 
+# Configure SSH key for Github
+ssh-keygen -t rsa -b 4096
+cat ~/.ssh/id_rsa.pub
+# Copy this SSH key into your Github Settings > SSH and GPG Keys page
+ssh-add -K ~/.ssh/id_rsa
+git clone <forked_repository_SSH_info>
+
 # Install Python virtual environment
 sudo apt-get install python3-venv
 python3 -m venv env
