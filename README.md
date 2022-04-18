@@ -22,7 +22,7 @@ This implementation uses SentenceTransformers which is a Python-based framework 
 This is currently running on AWS EC2 instance because I had trouble installing data science packages on Apple M1.
 
 ## Basic Pay
-This information was parsed from PDF files provided on the [DOD Military Compensation site](https://militarypay.defense.gov/Pay/Basic-Pay/Active-Duty-Pay/). 
+Not entirely related to the VA but this is an important part of understanding future prospects. This information was parsed from PDF files provided on the [DOD Military Compensation site](https://militarypay.defense.gov/Pay/Basic-Pay/Active-Duty-Pay/). 
 
 Visualizations:
 - Dashboard shows line graph of pay rate against years of experience for each pay grade
@@ -38,3 +38,13 @@ This information was parsed from CSV files provided on the [US Department of Vet
 
 ## VA Patient Wait Times
 This information is sourced directly from the [VA Lighthouse API](https://developer.va.gov/).  Python script was used to make the API call and denormalize the response for storage into Elasticsearch.  Coordinates provided from API were used to store the location as a geopoint for Maps visualization.
+
+## Patient Satisfaction
+TBD - can be processed in same pattern as the Patient Wait Times
+
+## Medicare Part D - Drug Costs
+This information is sourced from the [data.cms.gov](https://data.cms.gov/provider-summary-by-type-of-service/medicare-part-d-prescribers/medicare-part-d-prescribers-by-geography-and-drug) datasets. It contains information on prescription drugs prescribed by individual physicians and other health care providers and paid for under the Medicare Part D Prescription Drug Program.
+
+## Open Payments
+TBD - this is a huge dataset showing payments made to physicians...potentially could use ML on this
+
