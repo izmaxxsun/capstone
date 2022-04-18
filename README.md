@@ -49,26 +49,33 @@ This information is sourced from the [data.cms.gov](https://data.cms.gov/provide
 TBD - this is a huge dataset showing payments made to physicians...potentially could use ML on this
 
 # Details
-## Enhanced FAQ Search
-This demo was created using a Google Cloud compute instance (e2-medium).
-
-### Prerequsite
+## Environment Setup
+This demo was created using a Google Cloud compute instance (e2-medium) which uses a Debian "Buster" OS release.  
 ```
+# Upgrade pip to at least version 22.0.4
 pip install --upgrade pip
-```
-### Step-by-step
-1) Install Python virtual environment
-```
+
+# Configure Git
+sudo apt update
+sudo apt install git
+git config --global user.name "izmaxxsun"
+git config --global user.email "isra.sunhachawi@elastic.co"
+
+# Install Python virtual environment
 sudo apt-get install python3-venv
-```
-2) Create the virtual environment
-
-```
 python3 -m venv env
+source env/bin/activate
 ```
-3) Activate the virtual environment
 
+## Enhanced FAQ Search
+
+
+### Step-by-step
+1) Activate the virtual environment
 ```
 source env/bin/activate
 ```
-4) Install Sentence Transformers
+2) Install Sentence Transformers
+```
+pip install -U sentence-transformers
+```
