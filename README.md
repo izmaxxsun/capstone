@@ -48,3 +48,27 @@ This information is sourced from the [data.cms.gov](https://data.cms.gov/provide
 ## Open Payments
 TBD - this is a huge dataset showing payments made to physicians...potentially could use ML on this
 
+# Details
+## Enhanced FAQ Search
+This demo was created using a Google Cloud compute instance (e2-medium).
+
+### Prerequsite
+```
+pip install --upgrade pip
+```
+### Step-by-step
+1) Install Python virtual environment
+```
+sudo apt-get install python3-venv
+```
+2) Create the virtual environment
+
+```
+python3 -m venv env
+```
+3) Activate the virtual environment
+
+```
+source env/bin/activate
+```
+4) Install Sentence Transformers
