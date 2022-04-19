@@ -2,10 +2,11 @@ from elasticsearch import Elasticsearch, helpers
 import csv
 import json
 from pathlib import Path
+import os
 
 base_path = Path(__file__).parent
-file_path = (base_path / "source_data/Military_Pay/Military Basic Pay Enlisted.csv").resolve()
-INDEX_NAME = "military-pay-2022"
+file_path = (base_path / "../source_data/military-pay/Military Basic Pay Commissioned.csv").resolve()
+INDEX_NAME = "military-pay-commissioned-2022"
 
 class Payband:
     def __init__(self, pay_grade, years_exp, monthly_amount):
@@ -27,7 +28,7 @@ with open(file_path) as f:
         payband_dict = payband.__dict__
         doc_list.append(payband_dict)
 
-es = Elasticsearch(cloud_id="My_deployment:dXMtZWFzdC0xLmF3cy5mb3VuZC5pbyQ2MGUxMWIyZGMyZTY0NjhmYjM1ODQ3MjJhZjVjOTUyNyRjZmMzYzVlNTRmZjM0ZjE2OGY4MmFmODI1MjBhZTZkMg==",api_key="a01tNV8zOEJ5ZUE5VTkzUnpjLXc6bHlvUlhxNnBSY2FlNzhrcXo3OXdmUQ==")
+es = Elasticsearch(cloud_id=os.environ['CLOUD_ID'],api_key=os.environ['CLOUD_API_KEY'])
 result = es.ping()
 print(result)
 if result:

@@ -1,13 +1,13 @@
 import json
 import requests
-import pandas as pd
 from elasticsearch import Elasticsearch, helpers
+import os
 
 '''
 Uses VA Lighthouse API to retrieve facility information such as wait time and satisfaction.  
 '''
 
-INDEX_NAME = 'va-facilities'
+INDEX_NAME = 'va-facilities-2'
 
 class Facility:
     def __init__(self, name, location, type):
@@ -19,7 +19,7 @@ REQUEST_URL = 'https://sandbox-api.va.gov/services/va_facilities/v0/facilities/a
 
 response = requests.get(
     REQUEST_URL,
-    headers={'Accept': 'application/geo+json', 'apikey': '4HdExjUXYOOIwjXhsmLCLtxs7ry0P1RC'},
+    headers={'Accept': 'application/geo+json', 'apikey': os.environ['VA_API_KEY']},
 )
 
 json_response = response.json()
@@ -45,16 +45,16 @@ for num, doc in enumerate(json_response['features']):
         satisfaction_data = doc['properties']['satisfaction']['health']
 
         if "primary_care_urgent" in satisfaction_data:
-            dict_facility['primary_care_urgent'] = satisfaction_data['primary_care_urgent']
+            dict_facility['primary_care_urgent_score'] = satisfaction_data['primary_care_urgent']
 
         if "primary_care_routine" in satisfaction_data:
-            dict_facility['primary_care_routine'] = satisfaction_data['primary_care_routine']
+            dict_facility['primary_care_routine_score'] = satisfaction_data['primary_care_routine']
 
         if "specialty_care_routine" in satisfaction_data:
-            dict_facility['specialty_care_routine'] = satisfaction_data['specialty_care_routine']
+            dict_facility['specialty_care_routine_score'] = satisfaction_data['specialty_care_routine']
         
         if "specialty_care_urgent" in satisfaction_data:
-            dict_facility['specialty_care_urgent'] = satisfaction_data['specialty_care_urgent']
+            dict_facility['specialty_care_urgent_score'] = satisfaction_data['specialty_care_urgent']
 
         extract_times = wait_times['health']
         for item in extract_times:
@@ -70,7 +70,7 @@ for num, doc in enumerate(json_response['features']):
 
     doc_list.append(dict_facility)
 
-es = Elasticsearch(cloud_id="My_deployment:dXMtZWFzdC0xLmF3cy5mb3VuZC5pbyQ2MGUxMWIyZGMyZTY0NjhmYjM1ODQ3MjJhZjVjOTUyNyRjZmMzYzVlNTRmZjM0ZjE2OGY4MmFmODI1MjBhZTZkMg==",api_key="a01tNV8zOEJ5ZUE5VTkzUnpjLXc6bHlvUlhxNnBSY2FlNzhrcXo3OXdmUQ==")
+es = Elasticsearch(cloud_id=os.environ['CLOUD_ID'],api_key=os.environ["CLOUD_API_KEY"])
 result = es.ping()
 print(result)
 if result:
