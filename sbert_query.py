@@ -1,13 +1,14 @@
 from elasticsearch import Elasticsearch
 from typing import List
 from sentence_transformers import SentenceTransformer
+import os
 
 KEEP_GOING  = True
 
-
+# General purpose pretrained model stored on Hugging Faces repository
 sentence_transformer = SentenceTransformer("all-mpnet-base-v2")
 
-es_client = Elasticsearch(cloud_id="My_deployment:dXMtZWFzdC0xLmF3cy5mb3VuZC5pbyQ2MGUxMWIyZGMyZTY0NjhmYjM1ODQ3MjJhZjVjOTUyNyRjZmMzYzVlNTRmZjM0ZjE2OGY4MmFmODI1MjBhZTZkMg==", api_key="a01tNV8zOEJ5ZUE5VTkzUnpjLXc6bHlvUlhxNnBSY2FlNzhrcXo3OXdmUQ==")
+es_client = Elasticsearch(cloud_id=os.environ['CLOUD_ID'], api_key=os.environ['CLOUD_API_KEY'])
 
 INDEX_NAME = "my-approx-knn-index"
 
@@ -36,7 +37,7 @@ def query_question(question: str, top_n: int = 10) -> List[dict]:
     return clean_result
 
 while(KEEP_GOING):
-    print('What you want to Willis?')
+    print('What do you need help with?')
     question = input()
     result = query_question(question)
     for elem in result[:5]:
