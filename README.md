@@ -4,22 +4,18 @@
 Utilize open data to walk through Journeys of Veterans story (https://www.blogs.va.gov/VAntage/wp-content/uploads/2020/02/Veteran-Journey-Map.pdf).
 
 ## Enhanced Medical FAQ Using Approximate kNN Search
-<img align="left" width="100" height="100" src="https://aeiljuispo.cloudimg.io/v7/https://s3.amazonaws.com/moonup/production/uploads/1609621322398-5eff4688ff69163f6f59e66c.png?w=200&h=200&f=face">
 The idea behind this to make it save user's time from browsing through FAQs by allowing them to simply ask their question and have the system find relevant information for them.  This leverages Natural Language Processing to find semantic similarities between the question you're interested in and all the FAQ questions that have been processed and stored in Elasticsearch. 
-<br />
-<br />
+
+<p align="center"><img src="https://github.com/izmaxxsun/capstone/blob/main/beyondtext.gif"></p>
+<p align="center">Source: elastic.co</p>
 
 This implementation uses SentenceTransformers which is a Python-based framework that uses PyTorch and Transformers.  The BERT-based training model it uses is available on the Hugging Faces repository.  The general approach is described below:
-
 <br clear="both" />
-
 
 1. Collected FAQ information from Walter Reed website
 2. Generate dense vector representation of the questions using SentenceTransformer and store in Elasticsearch index
 3. When query is submitted, it is encoded using Sentence Transformers before being sent to the "kNN search" endpoint
 4. This returns a ranked list of results using similarity calculation (configurable)
-
-This is currently running on AWS EC2 instance because I had trouble installing data science packages on Apple M1.
 
 ## Basic Pay
 Not entirely related to the VA but this is an important part of understanding future prospects. This information was parsed from PDF files provided on the [DOD Military Compensation site](https://militarypay.defense.gov/Pay/Basic-Pay/Active-Duty-Pay/). 
