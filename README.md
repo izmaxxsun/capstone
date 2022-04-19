@@ -34,15 +34,36 @@ Source: [DefenseTravel Management site](https://www.defensetravel.dod.mil/site/b
 Format: ASCII 
 
 ## VA Loans
-After joining, a significant benefit is becoming eligible for VA-backed mortgages to buy a house for your family.    
+After joining, a significant benefit is becoming eligible for VA-backed mortgages to buy a house for your family.  The US Department of Veterans Affairs provides lender statistics dating back to 2015 comprising of over 8,000 records.  For the dashboard, we distill this into a couple points of interest:
+* Who are the top lenders and how much are they lending on average?
+* Which lenders are processing the most loans? Maybe I want to work with the lender with the most experience.
 
-This information was parsed from CSV files provided on the [US Department of Veterans Affairs site](https://www.benefits.va.gov/HOMELOANS/Lender_Statistics.asp).  Multiple years of data were indexed and an "update by query" approach was used to add a timestamp to analyze trends.
+<img src="https://github.com/izmaxxsun/capstone/blob/main/screen_captures/va-lender.png">
+
+If we want to dig further, we can view the dashboard which provides trends in mortgate amounts over time.  From here, we could also filter data to what is of interest.
+
+<img src="https://github.com/izmaxxsun/capstone/blob/main/screen_captures/va-loan-dashboard.png">
+
+Source: [US Department of Veterans Affairs site](https://www.benefits.va.gov/HOMELOANS/Lender_Statistics.asp).  2015-2021
+Format: CSV
 
 ## VA Patient Wait Times
-This information is sourced directly from the [VA Lighthouse API](https://developer.va.gov/).  Python script was used to make the API call and denormalize the response for storage into Elasticsearch.  Coordinates provided from API were used to store the location as a geopoint for Maps visualization.
+Access to care is vital and it can be confusing to determine when you are eligible for community care.  Part of the guidelines from the [Mission Act](https://www.va.gov/communitycare/docs/pubfiles/factsheets/va-fs_cc-eligibility.pdf) mention one criteria for being eligible for community care when an appointment cannot be made with the VA within 20 days.
+
+Using the APIs provided by the VA, we can open up transparency on this data by providing an interactive Kibana map view showing the states with the longest wait times as well as displaying data for specific VA health facilities.
+
+<img src="https://github.com/izmaxxsun/capstone/blob/main/screen_captures/va-wait-times.png">
+
+Source: [VA Lighthouse API](https://developer.va.gov/)  
+Format: REST API
 
 ## Patient Satisfaction
-TBD - can be processed in same pattern as the Patient Wait Times
+Just having access to care isn't enough. Satisfaction scores can be looked at from the perspective of the patient and the health facility.  This data is also available from the VA Lighthouse API.
+
+This is a data point that you could look at in this Kibana Map view as you're [selecting your preferred VA facility](https://www.va.gov/healthbenefits/resources/publications/hbco/hbco_faq.asp#:~:text=You%20may%20select%20any%20VA,administrative%20eligibility%20and%20medical%20necessit.) and sketching out the most convenient driving routes.
+
+Source: [VA Lighthouse API](https://developer.va.gov/)  
+Format: REST API
 
 ## Medicare Part D - Drug Costs
 This information is sourced from the [data.cms.gov](https://data.cms.gov/provider-summary-by-type-of-service/medicare-part-d-prescribers/medicare-part-d-prescribers-by-geography-and-drug) datasets. It contains information on prescription drugs prescribed by individual physicians and other health care providers and paid for under the Medicare Part D Prescription Drug Program.
