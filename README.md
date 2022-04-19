@@ -3,6 +3,8 @@
 ## Summary
 The hardest part of the journey these days isn't about getting data, it's now about unifying it and assembling it in a digestable way from the perspective of an actual end user.  In this project, we walk through the particular perspective of a veteran using the **Journeys of Veterans Map** prepared by the Veterans Experience Office.
 
+<img src="https://github.com/izmaxxsun/capstone/blob/main/screen_captures/journeys-of-veterans.png">
+
 This framework is integrated into the VA Welcome Kit and helps break down into segments the experiences and broad set of shared moments that many Veterans will encounter.  Using Elastic, we augment a subset of sections with data visualizations generated from processing various data sources and formats to aid the service member or Veteran in making informed, data-based decsions using a cohesive storyline.
 
 In addition, this project implements a practical use case for Natural Language Processing and advancements in search capabilities (i.e. approximate kNN search) to help the user find answers to frequently asked questions.
