@@ -76,7 +76,6 @@ source env/bin/activate
 
 ## Enhanced FAQ Search
 
-
 ### Step-by-step
 1) Activate the virtual environment
 ```
@@ -85,4 +84,12 @@ source env/bin/activate
 2) Install Sentence Transformers
 ```
 pip install -U sentence-transformers
+```
+3) Install Elasticsearch client
+```
+pip install elasticsearch
+```
+4) Start asking questions!
+```
+python sbert_query.py
 ```
