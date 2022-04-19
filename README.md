@@ -1,7 +1,13 @@
 # capstone
 
 ## Summary
-Utilize open data to walk through Journeys of Veterans story (https://www.blogs.va.gov/VAntage/wp-content/uploads/2020/02/Veteran-Journey-Map.pdf).
+The hardest part of the journey these days isn't about getting data, it's now about unifying it and assembling it in a digestable way from the perspective of an actual end user.  In this project, we walk through the particular perspective of a veteran using the **Journeys of Veterans Map** prepared by the Veterans Experience Office.
+
+<img src="https://github.com/izmaxxsun/capstone/blob/main/screen_captures/journeys-of-veterans.png">
+
+This framework is integrated into the VA Welcome Kit and helps break down into segments the experiences and broad set of shared moments that many Veterans will encounter.  Using Elastic, we augment a subset of sections with data visualizations generated from processing various data sources and formats to aid the service member or Veteran in making informed, data-based decsions using a cohesive storyline.
+
+In addition, this project implements a practical use case for Natural Language Processing and advancements in search capabilities (i.e. approximate kNN search) to help the user find answers to frequently asked questions.
 
 ## Enhanced Medical FAQ Using Approximate kNN Search
 The idea behind this to make it save user's time from browsing through FAQs by allowing them to simply ask their question and have the system find relevant information for them.  This leverages Natural Language Processing to find semantic similarities between the question you're interested in and all the FAQ questions that have been processed and stored in Elasticsearch. 
@@ -16,6 +22,10 @@ This implementation uses SentenceTransformers which is a Python-based framework 
 2. Generate dense vector representation of the questions using SentenceTransformer and store in Elasticsearch index
 3. When query is submitted, it is encoded using Sentence Transformers before being sent to the "kNN search" endpoint
 4. This returns a ranked list of results using similarity calculation (configurable)
+
+In this example, the user types in "my knee hurts" and the search finds results based on the semantic meaning returning a top result of "Can you treat my pain?".
+
+<img src="https://github.com/izmaxxsun/capstone/blob/main/screen_captures/sbert-search.png">
 
 ## Basic Pay
 Not entirely related to the VA but this is an important part of understanding future prospects. This information was parsed from PDF files provided on the [DOD Military Compensation site](https://militarypay.defense.gov/Pay/Basic-Pay/Active-Duty-Pay/). 
