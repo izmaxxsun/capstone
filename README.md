@@ -62,6 +62,8 @@ Just having access to care isn't enough. Satisfaction scores can be looked at fr
 
 This is a data point that you could look at in this Kibana Map view as you're [selecting your preferred VA facility](https://www.va.gov/healthbenefits/resources/publications/hbco/hbco_faq.asp#:~:text=You%20may%20select%20any%20VA,administrative%20eligibility%20and%20medical%20necessit.) and sketching out the most convenient driving routes.
 
+<img src="https://github.com/izmaxxsun/capstone/blob/main/screen_captures/va-patient-satisfaction.png">
+
 Source: [VA Lighthouse API](https://developer.va.gov/)  
 Format: REST API
 
