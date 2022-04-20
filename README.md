@@ -168,3 +168,6 @@ pip install elasticsearch
 ```
 python sbert_query.py
 ```
+# Accessing the Demo
+Login: https://my-deployment-b90948.kb.us-east-1.aws.found.io:9243
+E-mail me for login credentials
