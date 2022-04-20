@@ -68,10 +68,12 @@ Source: [VA Lighthouse API](https://developer.va.gov/)
 Format: REST API
 
 ## Medicare Part D - Drug Costs
-This information is sourced from the [data.cms.gov](https://data.cms.gov/provider-summary-by-type-of-service/medicare-part-d-prescribers/medicare-part-d-prescribers-by-geography-and-drug) datasets. It contains information on prescription drugs prescribed by individual physicians and other health care providers and paid for under the Medicare Part D Prescription Drug Program.
+The reporting of drug costs from Medicare Part D provide some transparency on the cost of prescriptions you might need. Providing trend graphs help us see where prescription costs are rising and a map view helps us see how the cost of an average claim compares by state.
 
-## Open Payments
-TBD - this is a huge dataset showing payments made to physicians...potentially could use ML on this
+<img src="https://github.com/izmaxxsun/capstone/blob/main/screen_captures/drug-costs.png">
+
+Source: [data.cms.gov](https://data.cms.gov/provider-summary-by-type-of-service/medicare-part-d-prescribers/medicare-part-d-prescribers-by-geography-and-drug)  
+Format: CSV
 
 ## Enhanced Medical FAQ Using Approximate kNN Search
 The idea behind this to make it save user's time from browsing through FAQs by allowing them to simply ask their question and have the system find relevant information for them.  This leverages Natural Language Processing to find semantic similarities between the question you're interested in and all the FAQ questions that have been processed and stored in Elasticsearch. 
@@ -119,8 +121,37 @@ source env/bin/activate
 ```
 
 ## Enhanced FAQ Search
+### Creating an Index
+Approximate kNN search is currently an experimental feature, so the index mappings were created in Kibana > Dev Tools.  Run the following request to create the index:
+```
+PUT faq-knn-sbert
+{
+  "mappings": {
+    "properties": {
+      "sbert_encoding": {
+        "type": "dense_vector",
+        "dims": 768,
+        "index": true,
+        "similarity": "l2_norm"
+      },
+      "question": {
+        "type": "text"
+      },
+      "answer": {
+        "type": "text"
+      },
+      "source": {
+        "type": "text"
+      }
+    }
+  }
+}
+```
 
-### Step-by-step
+### Add FAQ data to the index
+Run the "sbert_indexer.py" script
+
+### Performing a Search
 1) Activate the virtual environment
 ```
 source env/bin/activate
